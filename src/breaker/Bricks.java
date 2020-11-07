@@ -38,12 +38,10 @@ public class Bricks { //anoigoume tin klasi bricks
         for(int j=0; j < map[0].length; j++ ){ //ena for gia na afksanei ton metriti j tou pinaka map kata 1
             if (map[i][j]>0){ //poli simadiko tou leme edo na ksanazografizei ta bricks an i timi tous ine pano apo 0 diladi 1
              g.setColor(Color.white);//epilegoume lefko xroma sta bricks (argotera tin kori tou)
-             g.fillRect(j*brickWidth+80,i*brickHeight+50,brickWidth,brickHeight );//!!! poli disnoito komati tou kodika alla ola kala
-             //pano kato sxediazis tis kathetes kai tis orizonties grammes to thema ine pos to kaneis.
-             //afou to brickwidth ine 540/col diladi 540/7=77.14 skeftite oti i proti stili tha ine j*brickWidth+80 ara
-             //0*77.14+80 kai paei legontas gia ta epomena ara pano kato tou les kathe 80 pixels (pou tha borouse na ine kai 77)
-             //ftiakse mia katheti grammi pou oso auksanete to j toso pio pera paei
-             //ta idia kai gia to i diladi brickHeight=150/3=50 ara i*brickHeight+50=0*50+50=50 kai oso auksanete to i toso parapera tha paei
+             g.fillRect(j*brickWidth+80,i*brickHeight+50,brickWidth,brickHeight);//!!! poli disnoito komati tou kodika alla ola kala
+             //ftiaxnoyme ena brick poy tha exei brickwidth 540/στηλες. Αρα 540/5= 108 kai brickheight 150/grammes=37.5. Οποτε pada dimiourgo kai sbroxno ένα brick 80 pixels dexia kai 50 pixels kato
+             //Άρα το πρώτο brick των 108 pixels θα δημιουργηθεί στην θέση => j=0*brickwidth=108+80pixels και i=0*brickheight=37,5+50 pixels και πάει λέγοντας.
+             //Το j*brickWidth+80 πάνω κάτω τα σπρώχνει 80 pixels δεξιά και το i*brickHeight+50 τα σπρώχνει 50 pixels κάτω.
              
              
              //an den valoume tis parakato edoles ta bricks tha emfanizontai os ena megalo brick
@@ -51,9 +49,10 @@ public class Bricks { //anoigoume tin klasi bricks
              // dioti mavro ine kai to backround omos katalavenete oti me afton ton tropo
              //ine diskolo na valoume eikona piso tha to vroume omos 
              //sto sigekrimeno komati aftos sto video malakizete apistefta
-             g.setStroke(new BasicStroke(3)); //gia to poso megales tha ine oi grammes anamesa sta bricks genika gia to paxos
+             g.setStroke(new BasicStroke(4)); //gia to poso megales tha ine oi grammes anamesa sta bricks genika gia to paxos
              g.setColor(Color.black); //to xroma ton grammon
-             g.drawRect(j*brickWidth+80,i*brickHeight+50,brickWidth,brickHeight);//ta idia me pano alla gia to paxos ton grammon tora <3
+             g.drawRect(j*brickWidth+80,i*brickHeight+50,brickWidth,brickHeight);//ta idia me pano alla gia to paxos ton grammon tora. 
+             //Απλά χρησιμοποιώ την drawRect αντί για την fillRect για να δημιουργήσω μόνο το μαύρο περίγραμμα γύρω από τα λευκά bricks.
           }
         }
       }
