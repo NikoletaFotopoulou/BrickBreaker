@@ -83,9 +83,9 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
      //opote an kano 3 den tha dimiourgithei to kato gia na pefti i bala
      
      g.setColor(Color.green); 
-     g.fillRect(691,70 ,320, 3);
-     g.fillRect(691,140 ,320, 3);
-     g.fillRect(691,0,320,3);
+     g.fillRect(691,70 ,320, 5);
+     g.fillRect(691,140 ,320, 5);
+     g.fillRect(691,0,320,5);
      
      //to kathe border diaforetiko g oste allazodas ena apo ta 3 c na allazei to analogo border
      g.setColor(cright);
@@ -130,7 +130,7 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
      
      //gia tin platforma
      g.setColor(Color.green);
-     g.fillRect(playerX,550,100,8);
+     g.fillRect(playerX,550,100,15);
      
      //gia tin bala
      g.setColor(Color.yellow);
@@ -183,11 +183,17 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
         //gia tin kinisi tis balas
         if(play){ //tha ine true an exoume patisi ena apo ta 2 velakia ή το εντερ
         //me afto to terastio if tou les apla oti an akoubisi to rectangle tis balas me afto tis platformas na alaksei poreia i bala
-            if( new Rectangle(ballposX,ballposY,20,20).intersects(new Rectangle(playerX,550,100,8))){ // αν τα ορια της μπαλας χτιπισουν τα ορια της πλατφορμας αλλαξε πορια
+            
+            if( new Rectangle(ballposX,ballposY,20,20).intersects(new Rectangle(playerX,550,100,15))){ // αν τα ορια της μπαλας χτιπισουν τα ορια της πλατφορμας αλλαξε πορια
+                
+                //an i bala xtipisei kato apo tin platforma, dld plagia, na allaksei x, ara na pesei kato
+                if(ballposY>535)
+                ballXdir= -ballXdir;
+                else
                 ballYdir= -ballYdir;
             }    
             //oi parakato edelos prostethikan argotera kai ine gia na anixnevei i bala ta bricks
-            A:  for(int i=0; i<map.map.length; i++){
+            LOOP:  for(int i=0; i<map.map.length; i++){
                 for(int j = 0;j<map.map[0].length;j++){//to ti ine to map.map to eksigi kala sto 41:00
                     if(map.map[i][j]>0){//an i timi enos brick ine megaliteri tou 0
                         //δημιοργουμε τα ορια για καθε brick
@@ -196,25 +202,29 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
                         int brickWidth=map.brickWidth;
                         int brickHeight=map.brickHeight;  
                         //pali dimiourgoume ena Rectangle apo giro
-                        Rectangle rect = new Rectangle(brickX,brickY,brickWidth,brickHeight);
+                        Rectangle brickRect = new Rectangle(brickX,brickY,brickWidth,brickHeight);
                         //kai giro apo tin bala tora
                         Rectangle ballRect=new Rectangle(ballposX,ballposY,20,20);
-                        Rectangle brickRect = rect;
                         if(ballRect.intersects(brickRect)){ // αν τα ορια της μπαλας χτιπισουν τα ορια τον brick αλλαξε πορια
                             map.setBrickValue(0,i,j); // θετουμε 0 ετσι οστε να μην το ξανα ζωγραφισει η repaint
                             totalBricks--; // μιονουμε τον αριθμο των Bricks
                             score +=5; //ενημερονουμε το score
                             // afto ine gia ta dexia kai ta aristera meroi ton bricks
+                            //ta x gekina einai i aristeri pleura tou sximatos. diametros ballas 20, ara to x einai to proto pixel kai meta +19 i ipolypi bala
+                            //stin aristeri pleura tou || les an i dexia pleura tis balas akoubisei tin aristeri pleura tou brick
+                            //stin dexia pleura tou || les an i aristeri pleura tis balas akoubisei tin dexia tou brick, pou einai to x tou brick+to platos tou
+                            
                             if(ballposX + 19 <=brickRect.x || ballposX + 1 >=brickRect.x + brickRect.width){
                                 ballXdir = -ballXdir;
-                            } else {
+                            } else { //an diladi xtipisei apo pano i kato to brick
                                 ballYdir = -ballYdir;
                             }
-                            break A;
+                            break LOOP;//psaxnoume akoma pos akribos boithaei afto
                         }
                     }
                 }
             }
+            //analoga me tin timi toy direction allazoun ta x,y tis balas
             ballposX += ballXdir;
             ballposY += ballYdir;
             //pano kato tora tou les an akoubisei kapio border na pari tin aditheti poria apo aftin pou ixe
@@ -268,6 +278,7 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
                 moveLeft();
             }
         } 
+        
         // gia na boris na kaneis retry patontas ENTER
         if(e.getKeyCode()==KeyEvent.VK_ENTER ){
             if(!play){//θα μπει οταν το play ειναι ψευδες  //pano kato tou les ksanavalta ola apo tin arxi an isxiei afti i sinthiki
