@@ -24,6 +24,11 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
     private boolean play = false; //gia na min ksekinai mono tou to pexnidi
     private int score=0; //arxiko score
     
+    //dimiourgo 3 metavlites typou Color gia kathena apo 3 border tou paixnidiou. Arxiko xroma prasino
+    private Color cright=Color.green;
+    private Color cup=Color.green;
+    private Color cleft=Color.green;
+    
     private int totalBricks=20;//total bricks
    //ta epomena 2 gia tin taxitita tis balas
     //genika to Timer ine enas etimos tipos tis java kai mia metavliti aftou tou tipou xrisimopiite gia na pirodotei gegonota
@@ -58,6 +63,10 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
     // prepi na kanoume import ta graphics prota 
     //genikotera prepi na kanoume import xilia pramata pou den kserame kan tin iparksi tous
     //efxaristoume dipae
+    public void drawrightborder(Color cc, Graphics g){
+        g.setColor(cc);
+        g.fillRect(691,1,3 ,1000); 
+    }
     public void paint(Graphics g){
      //xroma gia to backgroung 2 epomena   
      //an kai exo dei methodous se alla tutorial gia na vazeis eikona piso.tha ta alaksoume ola 
@@ -71,15 +80,22 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
      
      
      //ta giro giro
-     
      //opote an kano 3 den tha dimiourgithei to kato gia na pefti i bala
-     g.setColor(Color.green);
-     g.fillRect(1, 0, 3, 1000);
-     g.fillRect(0,0,1200,3);
-     g.fillRect(691,1,3 ,1000);
+     
+     g.setColor(Color.green); 
      g.fillRect(691,70 ,320, 3);
      g.fillRect(691,140 ,320, 3);
+     g.fillRect(691,0,320,3);
      
+     //to kathe border diaforetiko g oste allazodas ena apo ta 3 c na allazei to analogo border
+     g.setColor(cright);
+     g.fillRect(0, 0, 5, 1000);
+     
+     g.setColor(cup);
+     g.fillRect(0,0,691,5);
+     
+     g.setColor(cleft);
+     g.fillRect(691,0,5 ,1000);
      
      
      // gia tin emfanisi tou score
@@ -205,12 +221,31 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
             //to proto if ine gia to aristero border  to deutero gia to pano to trito gia to dexi
             if(ballposX <0){
                 ballXdir = -ballXdir;
+                //kodikas pou epanalambanetai alles 2 fores apo kato, an einai to ena xroma allakse to se allo
+                if(cright==Color.green)
+                    cright=Color.yellow;
+                else if(cright==Color.yellow)
+                    cright=Color.cyan;
+                else if(cright==Color.cyan)
+                    cright=Color.green;
             }
             if(ballposY < 0){
                 ballYdir = -ballYdir;
+                if(cup==Color.green)
+                    cup=Color.yellow;
+                else if(cup==Color.yellow)
+                    cup=Color.cyan;
+                else if(cup==Color.cyan)
+                    cup=Color.green;
             }
             if(ballposX >670){
                 ballXdir = -ballXdir;
+                if(cleft==Color.green)
+                    cleft=Color.yellow;
+                else if(cleft==Color.yellow)
+                    cleft=Color.cyan;
+                else if(cleft==Color.cyan)
+                    cleft=Color.green;
             }
         }
         repaint(); //afto tha ksanazigrafisi otidipote vriskete stin puclib void paint
