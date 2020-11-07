@@ -107,10 +107,10 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
      g.setFont(new Font("serif",Font.BOLD, 25));
      g.drawString("Tsantilis Vasileios", 729,334);
      
-     //tsantilis
+     //fotopoulou
      g.setColor(Color.red);
      g.setFont(new Font("serif",Font.BOLD, 25));
-     g.drawString("Fotopoulou Nikoleta", 719,399);
+     g.drawString("Fotopoulou Nikoletta", 716,399);
      
      //gia tin platforma
      g.setColor(Color.green);
