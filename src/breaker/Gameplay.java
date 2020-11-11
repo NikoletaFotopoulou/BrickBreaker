@@ -24,10 +24,13 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
     private boolean play = false; //gia na min ksekinai mono tou to pexnidi
     private int score=0; //arxiko score
     
+    /* ΠΡΟΣΟΧΗ ΝΑ ΜΗΝ ΑΛΛΑΞΟΥΝ ΟΝΟΜΑΤΑ ΑΥΤΕΣ ΟΙ ΤΡΕΙΣ ΜΕΤΑΒΛΗΤΕΣ */
     //dimiourgo 3 metavlites typou Color gia kathena apo 3 border tou paixnidiou. Arxiko xroma prasino
     private Color cright=Color.green;
     private Color cup=Color.green;
     private Color cleft=Color.green;
+    private Color cball=Color.white;
+    /*ΤΕΛΟΣ ΠΡΟΣΟΧΗΣ */
     
     private int totalBricks=20;//total bricks
    //ta epomena 2 gia tin taxitita tis balas
@@ -63,10 +66,6 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
     // prepi na kanoume import ta graphics prota 
     //genikotera prepi na kanoume import xilia pramata pou den kserame kan tin iparksi tous
     //efxaristoume dipae
-    public void drawrightborder(Color cc, Graphics g){
-        g.setColor(cc);
-        g.fillRect(691,1,3 ,1000); 
-    }
     public void paint(Graphics g){
      //xroma gia to backgroung 2 epomena   
      //an kai exo dei methodous se alla tutorial gia na vazeis eikona piso.tha ta alaksoume ola 
@@ -133,7 +132,7 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
      g.fillRect(playerX,550,100,15);
      
      //gia tin bala
-     g.setColor(Color.yellow);
+     g.setColor(cball);
      g.fillOval(ballposX, ballposY, 20, 20);
      
      if(totalBricks <=0){ //otan spaseis ola ta toubla
@@ -193,6 +192,8 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
                 ballYdir= -ballYdir;
             }    
             //oi parakato edelos prostethikan argotera kai ine gia na anixnevei i bala ta bricks
+            
+            /* ΠΡΟΣΟΧΗ Η ΛΕΞΗ LOOP ΕΙΝΑΙ ΗΔΗ ΑΛΛΑΓΜΕΝΗ ΠΑΛΙΑ ΗΤΑΝ Α */
             LOOP:  for(int i=0; i<map.map.length; i++){
                 for(int j = 0;j<map.map[0].length;j++){//to ti ine to map.map to eksigi kala sto 41:00
                     if(map.map[i][j]>0){//an i timi enos brick ine megaliteri tou 0
@@ -209,6 +210,14 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
                             map.setBrickValue(0,i,j); // θετουμε 0 ετσι οστε να μην το ξανα ζωγραφισει η repaint
                             totalBricks--; // μιονουμε τον αριθμο των Bricks
                             score +=5; //ενημερονουμε το score
+                            
+                            /*ΠΡΟΣΟΧΗ ΝΑ ΜΗΝ ΑΛΛΑΞΕΙ ΠΟΥΘΕΝΑ*/
+                            if((i%2==0)&&(j%2==0))
+                                cball=Color.orange;
+                            else
+                                cball=Color.cyan;
+                            /*ΤΕΛΟΣ ΠΡΟΣΟΧΗΣ*/
+                            
                             // afto ine gia ta dexia kai ta aristera meroi ton bricks
                             //ta x gekina einai i aristeri pleura tou sximatos. diametros ballas 20, ara to x einai to proto pixel kai meta +19 i ipolypi bala
                             //stin aristeri pleura tou || les an i dexia pleura tis balas akoubisei tin aristeri pleura tou brick
@@ -229,6 +238,9 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
             ballposY += ballYdir;
             //pano kato tora tou les an akoubisei kapio border na pari tin aditheti poria apo aftin pou ixe
             //to proto if ine gia to aristero border  to deutero gia to pano to trito gia to dexi
+            
+            
+            /* ΠΡΟΣΟΧΗ ΑΠΟ ΑΥΤΟ ΤΟ ΣΗΜΕΙΟ ΝΑ ΑΛΛΑΞΟΥΝ ΜΟΝΟ ballYdir,ballXdir,ballposX,ballposY */
             if(ballposX <0){
                 ballXdir = -ballXdir;
                 //kodikas pou epanalambanetai alles 2 fores apo kato, an einai to ena xroma allakse to se allo
@@ -260,6 +272,10 @@ public class Gameplay extends JPanel implements KeyListener,ActionListener {
         }
         repaint(); //afto tha ksanazigrafisi otidipote vriskete stin puclib void paint
     }
+    
+    /*ΤΕΛΟΣ ΠΡΟΣΟΧΗΣ */
+    
+    
     //gia tis kinisis tis platformas
     @Override
     public void keyPressed(KeyEvent e) { //μεθοδος για το οταν πατιθει ενα πληκτρο

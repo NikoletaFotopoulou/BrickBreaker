@@ -15,7 +15,8 @@ import java.awt.Graphics2D;//voithaei sto na xirizomaste kalitera geometrika sxi
 
 //opou exi MapGenerator exo valei Bricks ine pio adiprosopeutiko
 //ola afta gia ta touvla ginontai se aftin tin class
-public class Bricks { //anoigoume tin klasi bricks
+public class Bricks { 
+    private Color brickcolor;//anoigoume tin klasi bricks
     public int map[][]; //aftos o pinakas ine gia ola ta bricks
     public int brickWidth; //dilonoume tin metavliti tou platous ton touvlon
     public int brickHeight; //dilonoume tin metavliti tou ipsous ton touvlon
@@ -31,13 +32,22 @@ public class Bricks { //anoigoume tin klasi bricks
     brickWidth = 540/col; //platos
     brickHeight= 150/row; //ipsos
   }
+
     public void draw(Graphics2D g) { //gia tin sxediasi ton bricks
     //poli simadiko!!! tha kanoume aftin tin methodo na zografizei bricks mono eki pou i timi ton bricks ine 1
     //diladi eki pou den exi akoubisi i bala
+        
     for(int i=0;i<map.length; i++){ //ena for gia na afksanei ton metriti i tou pinaka map kata 1 
+        
         for(int j=0; j < map[0].length; j++ ){ //ena for gia na afksanei ton metriti j tou pinaka map kata 1
-            if (map[i][j]>0){ //poli simadiko tou leme edo na ksanazografizei ta bricks an i timi tous ine pano apo 0 diladi 1
-             g.setColor(Color.white);//epilegoume lefko xroma sta bricks (argotera tin kori tou)
+            
+            if((i%2==0)&&(j%2==0))
+                brickcolor=Color.orange;
+            else
+                brickcolor=Color.cyan;
+            
+            if (map[i][j]>0){ //poli simadiko tou leme edo na ksanazografizei ta bricks an i timi tous ine pano apo 0 diladi 1 
+             g.setColor(brickcolor);//epilegoume lefko xroma sta bricks (argotera tin kori tou)
              g.fillRect(j*brickWidth+80,i*brickHeight+50,brickWidth,brickHeight);//!!! poli disnoito komati tou kodika alla ola kala
              //ftiaxnoyme ena brick poy tha exei brickwidth 540/στηλες. Αρα 540/5= 108 kai brickheight 150/grammes=37.5. Οποτε pada dimiourgo kai sbroxno ένα brick 80 pixels dexia kai 50 pixels kato
              //Άρα το πρώτο brick των 108 pixels θα δημιουργηθεί στην θέση => j=0*brickwidth=108+80pixels και i=0*brickheight=37,5+50 pixels και πάει λέγοντας.
