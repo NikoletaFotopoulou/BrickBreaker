@@ -1,0 +1,325 @@
+MAIN
+obj --> frame
++ frame.setLocationRelativeTo(null); //na anigi sto kentro tis ouonis
+frame.setBounds(10,10,965,650); --> frame.setSize(1000,650);
+
+///////////////////////////////////////////////////////////////
+
+Gameplay
+εβαλα περισοτερα Bricks απο 20 σε 30
+αλαξα σειρα καποια για να του διξουμε οτι τα διμιουργισαμε σιγα σιγα 
+αλαξα καποιυς αριθμους γιατι το εκανα λιγο μεγαλιτερο και γιατι οταν ζωγραφιζεις κατι στην java για καποιο λογο δεν περνει την μεταβλητη που εχεις πει
+https://stackoverflow.com/questions/15560527/frame-and-canvas-grow-larger-than-specified
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+Ayta{
+	private boolean play = false; //gia na min ksekinai mono tou to pexnidi
+    private int score=0; //arxiko score
+    
+    /* ΠΡΟΣΟΧΗ ΝΑ ΜΗΝ ΑΛΛΑΞΟΥΝ ΟΝΟΜΑΤΑ ΑΥΤΕΣ ΟΙ ΤΡΕΙΣ ΜΕΤΑΒΛΗΤΕΣ */  //τα αλαξα γιατι δεν τεριαζανε με της υπολιπες μεταβλητες
+    //dimiourgo 3 metavlites typou Color gia kathena apo 3 border tou paixnidiou. Arxiko xroma prasino
+    private Color rightColor=Color.GREEN;
+    private Color topColor=Color.GREEN;
+    private Color leftColor=Color.GREEN;
+    private Color ballColor=Color.WHITE;
+    private Color creators = new Color(179, 0, 0);
+    /*ΤΕΛΟΣ ΠΡΟΣΟΧΗΣ */
+    
+    private int totalBricks=20;//total bricks
+    //ta epomena 2 gia tin taxitita tis balas
+    //genika to Timer ine enas etimos tipos tis java kai mia metavliti aftou tou tipou xrisimopiite gia na pirodotei gegonota
+    
+    private Timer timer;//orizoume mia metavliti timer tipou Timer
+    
+    private int delay=6;//taxitita balas kai kinisi tis platformas the smaller number->the faster
+    
+    private int platformΧ=310;//arxiki thesi tis platformas (x)
+    //ta epomena 2 gia tin arxiki thesi tis balas        
+    private int ballX=350; 
+    private int ballY=530;
+     //ta epomena 2 gia tin kateuthisni tis balas
+    private int ballVelocityX=1;
+    private int ballVelocityY=2;
+    //domitis gia na valo tis parapano times otan dimiourgithi adikimeno apo aftin tin klasi
+    
+    private Bricks map;//metavliti map tipou bricks
+}
+
+Ta ekana etsi{
+	//genika to Timer ine enas etimos tipos tis java kai mia metavliti aftou tou tipou xrisimopiite gia na pirodotei gegonota
+    private Timer timer;//orizoume mia metavliti timer tipou Timer
+    
+    private Bricks map;//metavliti map tipou bricks
+    
+    //domitis gia na valo tis parapano times otan dimiourgithi adikimeno apo aftin tin klasi
+    public Gameplay(){
+        map=new Bricks(5,6); // dimiourgi grammes kai stiles gia ta bricks
+        addKeyListener(this);
+        setFocusable(true);// indicates whether a component can gain the focus if it is requested to do so
+        setFocusTraversalKeysEnabled(false);//decides whether or not focus traversal keys (TAB key, SHIFT+TAB, etc.) are allowed to be used when the current Component has focus
+        timer = new Timer(0,this); //vazoume ena timer gia na pirodoti gegonota ana 6 delay 
+        timer.start();
+    }
+    
+    private boolean play = false; //gia na min ksekinai mono tou to pexnidi
+    
+    private int platformΧ=300;//arxiki thesi tis platformas
+    
+    private Color ballColor=Color.WHITE;
+    //ta epomena 2 gia tin arxiki thesi tis balas        
+    private int ballX=340; 
+    private int ballY=530;
+    //ta epomena 2 gia tin kateuthisni tis balas
+    private int ballVelocityX=1;
+    private int ballVelocityY=2;
+    
+    private int score=0; //arxiko score
+    
+    private int totalBricks=30;//total bricks
+    
+    //dimiourgo 3 metavlites typou Color gia kathena apo 3 border tou paixnidiou. Arxiko xroma prasino
+    private Color rightColor=Color.GREEN;
+    private Color topColor=Color.GREEN;
+    private Color leftColor=Color.GREEN;
+
+    //i parakato methodos ine gia ton sxediasmo adikimenon (bala,platforma klp)
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+Ayta{
+		//ta giro giro
+        //opote an kano 3 den tha dimiourgithei to kato gia na pefti i bala
+        
+        
+        g.setColor(Color.green);
+        g.fillRect(691,70 ,320, 5);
+        g.fillRect(691,140 ,320, 5);
+        g.fillRect(691,0,320,5);
+     
+        //to kathe border diaforetiko g oste allazodas ena apo ta 3 c na allazei to analogo border
+        g.setColor(rightColor);
+        g.fillRect(691,0,5 ,1000);
+        
+     
+        g.setColor(topColor);
+        g.fillRect(0,0,691,5);
+     
+        g.setColor(leftColor);
+        g.fillRect(0, 0, 5, 1000);
+}
+Ta ekana etsi{
+		Graphics2D g2 = (Graphics2D) g;
+        
+        //perigrama
+        g.setColor(Color.GREEN);
+        g2.setStroke(new BasicStroke(15));
+        g.drawLine(700,100,1000,100);
+        g.drawLine(700,200,1000,200);
+        g.drawRect(700,7,289,606);
+        
+        
+        //perigrama me xromata
+        g.setColor(rightColor);
+        g.drawLine(700,0,700,615);
+        
+        g.setColor(topColor);
+        g2.setStroke(new BasicStroke(30));
+        g.drawLine(0,0,678,0);
+        
+        g.setColor(leftColor);
+        g.drawLine(0,0,0,615);
+}
+
+
+
+--------------------------------------------------------------------------------
+Ayta{
+		// gia tin emfanisi tou score
+        g.setColor(Color.white);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString("Score:"+score, 781, 42);
+     
+        //posa bricks menoun
+        g.setColor(Color.white);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString("Remaining Bricks:"+totalBricks, 713, 113);
+     
+        //made by
+        g.setColor(creators);
+        g.setFont(new Font("serif",Font.BOLD, 30));
+        g.drawString("Created by: ", 745, 204);
+     
+        //karaxristos
+        g.setColor(creators);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString("Karachristos Georgios", 713, 269);
+     
+        //tsantilis
+        g.setColor(creators);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString("Tsantilis Vasileios", 729,334);
+     
+        //fotopoulou
+        g.setColor(creators);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString("Fotopoulou Nikoletta", 716,399);
+}
+Ta ekana etsi{
+		//score - totalBricks
+        g.setColor(Color.white);
+        g.setFont(new Font("Courier",Font.BOLD, 25));
+        g.drawString("Score:"+score, 800,65);
+        g.drawString("Remaining Bricks:"+totalBricks, 723,160);
+        
+        //made by
+        g.setColor(new Color(179, 0, 0));
+        g.setFont(new Font("Courier",Font.BOLD, 25));
+        g.drawString("Created by: ", 780, 250);
+        g.drawString("Karachristos Georgios", 710, 300);
+        g.drawString("Tsantilis Vasileios", 740,350);
+        g.drawString("Fotopoulou Nikoletta", 726,400);
+}
+
+
+
+--------------------------------------------------------------------------------
+Ayta{
+		//how to start
+        g.setColor(Color.magenta);
+        g.setFont(new Font("serif",Font.BOLD, 25));
+        g.drawString("Press space to start!", 720,495);
+}
+Ta ekana etsi{
+		//how to start
+        if (!play && totalBricks >0 && ballY< 650){
+            g.setColor(Color.magenta);
+            g.setFont(new Font("Courier",Font.BOLD, 25));
+            g.drawString("Press space to start!", 230,300); 
+        }
+}
+
+
+
+--------------------------------------------------------------------------------
+Ayta{
+		if(totalBricks <=0){ //otan spaseis ola ta toubla
+            play=false; //teleionei to paixnidi
+            ballVelocityX=0; //bala stamataei na kineitai
+            ballVelocityY=0;
+            g.setColor(Color.red); //gia na emfanisoume ta apotelesmata sto telos
+            g.setFont(new Font("serif",Font.BOLD, 30)); // name,style,size 
+            g.drawString("You Won", 260, 300); //zografizei ti tha leei, orizoume x,y
+         
+            g.setFont(new Font("serif",Font.BOLD, 20)); //kainourgio font
+            g.drawString("Press Enter to Restart", 230, 350);
+        }
+        //aftes edo oi edoles ine gia to pote tha sou vgazei game over
+        if(ballY> 650){ //an pesei kato dld
+            play=false; //stamatei to paixnidi
+            ballVelocityX=0; //stamata na kineitai i bala
+            ballVelocityY=0;//axriasto
+            g.setColor(Color.red);
+            g.setFont(new Font("serif",Font.BOLD, 30));
+            g.drawString("Game Over,Score:"+score, 190, 300);
+            g.setFont(new Font("serif",Font.BOLD, 20));
+            g.drawString("Press Enter to Restart", 230, 350);
+        }
+}
+Ta ekana etsi{
+		//Minima an xasis i kerdisis
+        if(totalBricks <=0 || ballY> 650){ 
+            play=false;
+            ballVelocityX=0; 
+            ballVelocityY=0;
+            g.setColor(Color.red);
+            g.setFont(new Font("Courier",Font.BOLD, 30)); 
+            if (totalBricks <=0)
+                g.drawString("You Won! Score:"+score, 235, 300);
+            if (ballY> 650)
+                g.drawString("Game Over! Score:"+score, 220, 300);
+            g.drawString("Press Enter to Restart", 205, 330);
+        }
+}
+
+
+
+--------------------------------------------------------------------------------
+Ayta{
+		if((i%2==0)&&(j%2==0))
+			ballColor=Color.orange;
+		else
+			ballColor=Color.cyan;
+}
+Ta ekana etsi{ !!!! το ιδιο εκανα και στην κλαση Bricks !!!!
+		if (i==j || i+2==j || i+4==j || i-2==j || i-4==j) 
+			ballColor=Color.orange;
+		else
+			ballColor=Color.cyan;
+}
+
+
+
+
+--------------------------------------------------------------------------------
+Ayta{
+		// dimiourgo tis methodous kinisis gia na  boroun na litourgisoun oi pano sinthikes 
+		public void moveRight(){
+			if(play==true)//ama to paixnidi trexei den theloume na kinitai i bala me ta belakia, ara mono platforma 20 pixel deksia
+				platformΧ+=20;
+			else{ //an den exei ksekinisei to paixnidi, bala kai platforma kinoudai mazi 20 pixel deksia
+				platformΧ+=20;
+				ballX+=20;
+			}       
+		}
+		public void moveLeft(){
+			if(play==true) //ama to paixnidi trexei den theloume na kinitai i bala me ta belakia, ara mono platforma 20 pixel aristera
+				platformΧ-=20; 
+			else{ //an den exei ksekinisei to paixnidi, bala kai platforma kinoudai mazi 20 pixel aristera
+				platformΧ-=20;
+				ballX-=20;
+			}    
+		}
+}
+	
+	
+kai ayta{	
+		public void keyPressed(KeyEvent e) { //μεθοδος για το οταν πατιθει ενα πληκτρο
+		//an patao to deksi velaki kai den exi figi i platforma ekso apo ta borders kounisou dexia
+        if (e.getKeyCode()== KeyEvent.VK_RIGHT){
+            if(platformΧ+20>590) //το εκανα για να ειναι στα ορια
+                platformΧ=590;
+            else
+                moveRight();
+        }  //ta idia gia aristera tora
+        if(e.getKeyCode()==KeyEvent.VK_LEFT){
+            if(platformΧ-20<5) //το εκανα για να ειναι στα ορια
+                platformΧ=5;
+            else
+                moveLeft();
+        }
+}
+	
+	
+Ta ekana etsi{
+		public void keyPressed(KeyEvent e) {
+			if (e.getKeyCode()== KeyEvent.VK_RIGHT){
+				if(platformΧ+20>593) //το εκανα για να ειναι στα ορια
+					platformΧ=593;
+				else
+					platformΧ+=20;
+				if (!play && totalBricks >0)
+					ballX=platformΧ+40;
+			}  //ta idia gia aristera tora
+			if(e.getKeyCode()==KeyEvent.VK_LEFT){
+				if(platformΧ-20<15) //το εκανα για να ειναι στα ορια
+					platformΧ=15;
+				else
+					platformΧ-=20;
+				if (!play && totalBricks >0)
+					ballX=platformΧ+40;   
+			}
+		}
+}
