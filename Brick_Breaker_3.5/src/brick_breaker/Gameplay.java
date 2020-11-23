@@ -72,22 +72,22 @@ class Gameplay extends JPanel implements KeyListener,ActionListener{
         
         //perigrama
         g.setColor(Color.GREEN);
-        g2.setStroke(new BasicStroke(15));
+        g2.setStroke(new BasicStroke(10));
         g.drawLine(700,100,1000,100);
         g.drawLine(700,200,1000,200);
-        g.drawRect(700,7,289,606);
+        g.drawRect(700,6,289,610);
         
         
         //perigrama me xromata
         g.setColor(rightColor);
-        g.drawLine(700,0,700,615);
+        g.drawLine(700,6,700,616);
         
         g.setColor(topColor);
-        g2.setStroke(new BasicStroke(30));
-        g.drawLine(0,0,678,0);
+        g2.setStroke(new BasicStroke(10));
+        g.drawLine(6,6,690,6);
         
         g.setColor(leftColor);
-        g.drawLine(0,0,0,615);
+        g.drawLine(6,6,6,616);
 
         //score - totalBricks
         g.setColor(Color.white);
@@ -185,7 +185,7 @@ class Gameplay extends JPanel implements KeyListener,ActionListener{
             //to proto if ine gia to aristero border  to deutero gia to pano to trito gia to dexi
             
             
-            if(ballX <15){
+            if(ballX <10){
                 ballVelocityX = -ballVelocityX;
                 //kodikas pou epanalambanetai alles 2 fores apo kato, an einai to ena xroma allakse to se allo
                 if(leftColor==Color.green)
@@ -196,7 +196,7 @@ class Gameplay extends JPanel implements KeyListener,ActionListener{
                     leftColor=Color.green;
                 
             }
-            if(ballY < 15){
+            if(ballY < 10){
                 ballVelocityY = -ballVelocityY;
                 if(topColor==Color.green)
                     topColor=Color.yellow;
@@ -205,7 +205,7 @@ class Gameplay extends JPanel implements KeyListener,ActionListener{
                 else if(topColor==Color.cyan)
                     topColor=Color.green;
             }
-            if(ballX >670){
+            if(ballX >675){
                 ballVelocityX = -ballVelocityX;
                 if(rightColor==Color.green)
                     rightColor=Color.yellow;
@@ -228,16 +228,16 @@ class Gameplay extends JPanel implements KeyListener,ActionListener{
     public void keyPressed(KeyEvent e) { //μεθοδος για το οταν πατιθει ενα πληκτρο
     //an patao to deksi velaki kai den exi figi i platforma ekso apo ta borders kounisou dexia
         if (e.getKeyCode()== KeyEvent.VK_RIGHT){
-            if(platformΧ+20>593) //το εκανα για να ειναι στα ορια
-                platformΧ=593;
+            if(platformΧ+20>595) //το εκανα για να ειναι στα ορια
+                platformΧ=595;
             else
                 platformΧ+=20;
             if (!play && totalBricks >0)
                 ballX=platformΧ+40;
         }  //ta idia gia aristera tora
         if(e.getKeyCode()==KeyEvent.VK_LEFT){
-            if(platformΧ-20<15) //το εκανα για να ειναι στα ορια
-                platformΧ=15;
+            if(platformΧ-20<11) //το εκανα για να ειναι στα ορια
+                platformΧ=11;
             else
                 platformΧ-=20;
             if (!play && totalBricks >0)
