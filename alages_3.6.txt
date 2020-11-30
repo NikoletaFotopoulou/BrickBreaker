@@ -1,0 +1,20 @@
+		// gia na boris na kaneis retry patontas ENTER
+        //ξανα αρχικοποιουμε της μεταβλητες
+        if(e.getKeyCode()==KeyEvent.VK_ENTER ){
+            if(!play && totalBricks ==0 || ballY > 650){
+                ballColor=Color.WHITE;
+                ballX=340;
+                ballY=530;
+                ballVelocityX=1;
+                ballVelocityY=2;
+                platformΧ=300;
+                score=0;
+                totalBricks=30;
+                map= new Bricks(5,6);
+                rightColor=Color.GREEN;
+                topColor=Color.GREEN;
+                leftColor=Color.GREEN;
+                
+                repaint(); //καλουμε την repaint ετσι οστε να ξανα ζωγραφισουμε το "παιχνιδι" με της μεταβλιτες που θεσαμε απο πανω
+            }
+        }
